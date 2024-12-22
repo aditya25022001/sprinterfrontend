@@ -1,0 +1,30 @@
+<div class="d-flex border-bottom header">
+  <div class="d-flex">
+    <h5 class="ml-3 mt-1" style="cursor:pointer;" routerLink="/">MEAN</h5>
+  </div>
+  @if(loggedIn){
+  <div class="d-flex" style="align-items:center;">
+    <div class="ml-3">
+      <input class="form-control" type="text" placeholder="Search"/>
+    </div>
+    <div>
+      <h6 class="ml-3 mt-1" style="cursor:pointer;" routerLink="/">Home</h6>
+    </div>
+    <div>
+      <h6 class="ml-3 mt-1" style="cursor:pointer;" routerLink="/">Projects</h6>
+    </div>
+    <div>
+      <h6 class="ml-3 mt-1" style="cursor:pointer;" routerLink="/">Teams</h6>
+    </div>
+      <div class="dropdown ml-3">
+        <h6 type="button" class="mr-3 mt-1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ user && user.name.split(" ")[0]+" "+user.name.split(" ")[1][0] }}
+        </h6>
+        <ul class="dropdown-menu">
+          <li type="button"><a class="dropdown-item">Settings</a></li>
+          <li type="button" (click)="logout()"><a class="dropdown-item">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  }
+</div>

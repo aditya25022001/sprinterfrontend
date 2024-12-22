@@ -1,7 +1,11 @@
-export interface Login{
+export interface User{
   message:String,
   name:String,
   email:String,
-  id:String,
+  _id:String,
   token:String
+}
+
+export interface AuthState{
+  user: User
 }
