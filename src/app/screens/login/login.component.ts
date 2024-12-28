@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../../services/user-service.service';
 import { MatIconModule } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
@@ -14,7 +13,7 @@ import { loginRequest } from '../../state/login';
   standalone: true,
   imports: [ReactiveFormsModule, MatIconModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss','../../app.component.scss']
+  styleUrls: ['./login.component.scss', '../../app.component.scss']
 })
 export class LoginComponent {
 
@@ -24,7 +23,7 @@ export class LoginComponent {
   message:String = ""
   success:Boolean = false
 
-  constructor(private userService: UserService, private store: Store<AppState>, private sharedService:SharedService, private router: Router){
+  constructor(private store: Store<AppState>, private sharedService:SharedService, private router: Router){
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])

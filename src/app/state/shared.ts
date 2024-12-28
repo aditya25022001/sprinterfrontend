@@ -6,17 +6,17 @@ const initialSharedState:Shared = {
   toast:{
     isError:false,
     message:"",
-    color:"var(--error)"
+    color:""
   }
 }
 
 enum SharedTypes{
   LOADING = "LOADING",
-  ERROR = "ERROR",
+  TOAST = "TOAST",
 }
 
 export const loading = createAction(SharedTypes.LOADING, props<{ loading:boolean }>())
-export const error = createAction(SharedTypes.ERROR, props<{ message:string, color:string, isError:boolean }>())
+export const error = createAction(SharedTypes.TOAST, props<{ message:string, color:string, isError:boolean }>())
 
 const sharedReducer = createReducer(
   initialSharedState,

@@ -8,6 +8,7 @@ import { AppState, initialState } from "../app.state";
 import { loading } from "./shared";
 import { error } from "./shared";
 import { of } from "rxjs";
+import { SharedService } from "../services/shared-service.service";
 
 enum LoginTypes{
   LOGIN_REQUEST = "LOGIN_REQUEST",
@@ -51,7 +52,7 @@ export function LoginReducer(state: AuthState | undefined,action: any){
 @Injectable()
 export class AuthEffect{
 
-  constructor(private actions:Actions, private userService:UserService, private store:Store<AppState>) {}
+  constructor(private actions:Actions, private userService:UserService, private store:Store<AppState>, private sharedService: SharedService) {}
 
   login = createEffect(() => {
     return this.actions
@@ -61,16 +62,17 @@ export class AuthEffect{
           map((data) => {
             localStorage.setItem('userInfo',JSON.stringify(data))
             this.store.dispatch(loading({ loading:false }))
+            this.sharedService.toast(true, "Logged in successfully","success")
             return loginSuccess({user:data})
           }),
           catchError((err) => {
             this.store.dispatch(loading({ loading:false }))
-            return of(error({ message:err.error.message, isError:true, color:"var(--error)" }));
+            return of(error({ message:err.error.message, isError:true, color:"danger" }));
           })
         )
-    }))
+      })
+    )
   })
-
 }
 
 const getUserState = createFeatureSelector<AuthState>("login")

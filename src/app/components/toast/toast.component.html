@@ -1,0 +1,7 @@
+@if((toast | async)?.isError){
+  <div [class]="class" role="alert">
+    {{(toast | async)?.message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+}
+
